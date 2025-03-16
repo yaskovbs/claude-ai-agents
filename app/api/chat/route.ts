@@ -24,7 +24,7 @@ export async function POST(request: Request) {
 
       return {
         role: role === "assistant" ? "assistant" : "user",
-        content: content,
+        content: content
       }
     })
 
@@ -41,17 +41,17 @@ export async function POST(request: Request) {
       headers: {
         "Content-Type": "application/json",
         "x-api-key": anthropicApiKey,
-        "anthropic-version": "2023-06-01",
+        "anthropic-version": "2023-06-01"
       },
       body: JSON.stringify({
         model: modelToUse,
         max_tokens: 4000,
         messages: formattedMessages,
-        temperature: 0.7,
-      }),
+        temperature: 0.7
+      })
     })
 
-    // אם המפתח הראשון נכשל, נסה עם המפתח השני
+    // אם המפתח הראשון נכשל נסה עם המפתח השני
     if (!response.ok) {
       console.log("First API key failed, trying backup key...")
 
@@ -63,14 +63,14 @@ export async function POST(request: Request) {
         headers: {
           "Content-Type": "application/json",
           "x-api-key": anthropicApiKey,
-          "anthropic-version": "2023-06-01",
+          "anthropic-version": "2023-06-01"
         },
         body: JSON.stringify({
           model: modelToUse,
           max_tokens: 4000,
           messages: formattedMessages,
-          temperature: 0.7,
-        }),
+          temperature: 0.7
+        })
       })
     }
 
@@ -83,7 +83,7 @@ export async function POST(request: Request) {
       console.log("Response status:", response.status)
       console.log("Response headers:", Object.fromEntries(response.headers.entries()))
 
-      // אם יש שגיאת מכסה או שגיאת מודל לא נמצא, נסה מודל אחר
+      // אם יש שגיאת מכסה או שגיאת מודל לא נמצא נסה מודל אחר
       if (
         response.status === 429 ||
         response.status === 404 ||
@@ -101,14 +101,14 @@ export async function POST(request: Request) {
           headers: {
             "Content-Type": "application/json",
             "x-api-key": anthropicApiKey,
-            "anthropic-version": "2023-06-01",
+            "anthropic-version": "2023-06-01"
           },
           body: JSON.stringify({
             model: alternativeModel,
             max_tokens: 4000,
             messages: formattedMessages,
-            temperature: 0.7,
-          }),
+            temperature: 0.7
+          })
         })
 
         if (!alternativeResponse.ok) {
@@ -124,14 +124,14 @@ export async function POST(request: Request) {
             headers: {
               "Content-Type": "application/json",
               "x-api-key": anthropicApiKey,
-              "anthropic-version": "2023-06-01",
+              "anthropic-version": "2023-06-01"
             },
             body: JSON.stringify({
               model: lastResortModel,
               max_tokens: 4000,
               messages: formattedMessages,
-              temperature: 0.7,
-            }),
+              temperature: 0.7
+            })
           })
 
           if (!lastResortResponse.ok) {
@@ -139,7 +139,7 @@ export async function POST(request: Request) {
             console.error("Last resort model error:", lastErrorData)
             return NextResponse.json(
               { error: `נראה שהגעת למגבלת השימוש היומית. נסה שוב מחר או השתמש במפתח API אחר.` },
-              { status: 429 },
+              { status: 429 }
             )
           }
 
@@ -155,7 +155,7 @@ export async function POST(request: Request) {
 
       return NextResponse.json(
         { error: `Error from Claude API: ${errorData.error?.message || response.statusText || "Unknown error"}` },
-        { status: response.status },
+        { status: response.status }
       )
     }
 
@@ -166,7 +166,7 @@ export async function POST(request: Request) {
     console.error("Error calling Claude API:", error)
     return NextResponse.json(
       { error: `Error calling Claude API: ${error.message || "Unknown error"}` },
-      { status: 500 },
+      { status: 500 }
     )
   }
 }
