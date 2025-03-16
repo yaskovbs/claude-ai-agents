@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Claude AI 3.7 AI Agents
 
 <div align="center">
@@ -7,7 +6,7 @@
 
 ## 🤖 Overview
 
-Claude AI 3.7 AI Agents is a powerful platform that leverages Anthropic's Claude 3.7 AI model to help users build web and mobile applications, as well as complete websites, through natural language conversations. This tool bridges the gap between idea and implementation by allowing users to describe their desired application or website, and then generating the necessary code to bring it to life.
+Claude AI 3.7 AI Agents is a powerful platform that leverages Anthropic's Claude 3.7 AI model to help users build web and mobile applications as well as complete websites through natural language conversations. This tool bridges the gap between idea and implementation by allowing users to describe their desired application or website and then generating the necessary code to bring it to life.
 
 ## ✨ Features
 
@@ -29,15 +28,11 @@ Claude AI 3.7 AI Agents is a powerful platform that leverages Anthropic's Claude
 - Node.js 18.x or higher
 - npm or yarn
 - Anthropic API key (for Claude 3.7)
-- Supabase account (optional, for database features)
+- Supabase account (optional for database features)
 
 ### Installation
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/claude-ai-agent.git
-cd claude-ai-agent
-
-=======
-# claude-ai-agents
->>>>>>> 11826a2613523a4dbb8c7c3f9d0c933c4eea6f06
+git clone https://github.com/yaskovbs/claude-ai-agents.git
+cd claude-ai-agents
